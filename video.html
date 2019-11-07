@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>小视频</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.bootcss.com/Swiper/4.5.1/css/swiper.min.css" rel="stylesheet">
+  <style>
+    
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      background: black;
+    }
+    
+    .swiper-container {
+      width: 100vw;
+      height: 100vh;
+    }
+    
+    .swiper-slide {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .video-wrapper {
+      padding: 0 20px;
+      position: absolute;
+      left: 0;
+      bottom: 30px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .content {
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+    }
+    
+    .info {
+      flex: 1;
+      color: white;
+    }
+    
+    .info .tag {
+      border-radius: 20px;
+      padding: 5px 10px;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+    }
+    
+    .info .title {
+      margin-top: 20px;
+    }
+    
+    .info .desc {
+      font-size: 12px;
+      margin: 5px 0;
+    }
+    
+    .action {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .action .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    .action .item img {
+      width: 35px;
+      height: 35px;
+    }
+    
+    .action .item span {
+      color: white;
+      margin-top: 5px;
+    }
+    
+    .input {
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.15);
+      width: 90%;
+      margin: 30px 0;
+      color: white;
+    }
+    
+    input:focus {
+      outline: none;
+    }
+    
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white;
+      opacity: 1; /* Firefox */
+    }
+    
+    .video {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+    
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      min-width: 100px;
+      min-height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translate(-50%, -50%);
+      z-index: 99;
+      color: white;
+      background: rgba(255, 255, 255, 0.15);
+      transition: all .4s;
+      opacity: 0;
+      visibility: hidden;
+      padding: 5px 10px;
+    }
+    
+    .show-toast {
+      opacity: 1;
+      visibility: visible;
+    }
+  
+  </style>
+
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div class="video-wrapper">
+        <div class="content">
+          <div class="info">
+            <span class="tag">视频集结号</span>
+            <h3 class="title">#奔跑的西红柿#</h3>
+            <p class="desc">改装大神~热评圣手</p>
+            <h4 class="name">初始化安卓</h4>
+          </div>
+          <div class="action">
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_like_1.png" />
+              <span>21.3k</span>
+            </div>
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_comment.png" />
+              <span>1.3k</span>
+            </div>
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_share.png" />
+              <span>分享</span>
+            </div>
+          </div>
+        
+        </div>
+        <input class="input" placeholder="说点什么吧..." />
+      </div>
+      
+      
+      <video muted class="video"
+        data-src="https://v.suv666.com/test/ycyh/platform/post/20191010151953_UCs3s2Yj.mp4"></video>
+    </div>
+    <div class="swiper-slide">
+      <div class="video-wrapper">
+        <div class="content">
+          <div class="info">
+            <span class="tag">视频集结号</span>
+            <h3 class="title">#奔跑的西红柿#</h3>
+            <p class="desc">改装大神~热评圣手</p>
+            <h4 class="name">初始化安卓</h4>
+          </div>
+          <div class="action">
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_like_1.png" />
+              <span>21.3k</span>
+            </div>
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_comment.png" />
+              <span>1.3k</span>
+            </div>
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_share.png" />
+              <span>分享</span>
+            </div>
+          </div>
+        
+        </div>
+        <input class="input" placeholder="说点什么吧..." />
+      </div>
+      
+      <video muted class="video"
+        data-src="https://v.suv666.com/test/ycyh/platform/post/20191010113746_p1FZ69hj.mp4"></video>
+    </div>
+    <div class="swiper-slide">
+      <div class="video-wrapper">
+        <div class="content">
+          <div class="info">
+            <span class="tag">视频集结号</span>
+            <h3 class="title">#奔跑的西红柿#</h3>
+            <p class="desc">改装大神~热评圣手</p>
+            <h4 class="name">初始化安卓</h4>
+          </div>
+          <div class="action">
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_like_1.png" />
+              <span>21.3k</span>
+            </div>
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_comment.png" />
+              <span>1.3k</span>
+            </div>
+            <div class="item">
+              <img src="https://img.suv666.com/ui/ycyh/3_0/wxapp/icon_short_video_share.png" />
+              <span>分享</span>
+            </div>
+          </div>
+        
+        </div>
+        <input class="input" placeholder="说点什么吧..." />
+      </div>
+      
+      
+      <video muted class="video"
+        data-src="https://v.suv666.com/test/ycyh/platform/post/20191010113645_rmFJerJi.mp4"></video>
+    </div>
+  </div>
+
+</div>
+<script src="https://cdn.bootcss.com/Swiper/4.5.1/js/swiper.min.js"></script>
+<script>
+  window.onload = function () {
+    const wrapperList = document.getElementsByClassName('swiper-slide')
+    let playedList = []
+
+    function observeVideo (elem, index, loadCb, endCb) {
+      const video_src = elem.getAttribute('data-src')
+      elem.setAttribute('src', video_src)
+      playedList.push(index)
+      elem.addEventListener('waiting', function () {
+        console.log('视频正在加载')
+      })
+      elem.addEventListener('canplaythrough', function () {
+        console.log('视频可以播放')
+        showToast('视频可以播放')
+        loadCb()
+      })
+      elem.addEventListener('error', function (e) {
+        console.error('视频加载失败');
+        showToast('视频加载失败')
+      });
+      elem.addEventListener('ended', function () {
+        console.log('视频播放完毕')
+        endCb()
+      })
+    }
+
+    function showToast (text) {
+      const toastElem = document.getElementById('toast')
+      toastElem.classList.add('show-toast')
+      toastElem.innerText = text
+      setTimeout(() => {
+        toastElem.classList.remove('show-toast')
+      }, 1000)
+    }
+
+    var mySwiper = new Swiper('.swiper-container', {
+      direction: 'vertical', // 垂直切换选项
+      loop: false, // 循环模式选项
+      on: {
+        init: function () {
+          const videoElem = wrapperList[this.activeIndex].querySelector('video')
+          observeVideo(videoElem, this.activeIndex, () => {
+            videoElem.play()
+          }, () => {
+            this.slideNext()
+          })
+        },
+        slideChange: function () {
+          const lastVideoElem = wrapperList[this.previousIndex].querySelector('video')
+          lastVideoElem && lastVideoElem.pause()
+          const nextVideoElem = wrapperList[this.activeIndex].querySelector('video')
+          if (playedList.indexOf(this.activeIndex) !== -1) {
+            nextVideoElem && nextVideoElem.play()
+          } else {
+            observeVideo(nextVideoElem, this.activeIndex, () => {
+              nextVideoElem.play()
+            }, () => {
+              if (this.isEnd) {
+                if (window.confirm('已经没有更多了，去抖音看看？')) {
+                  window.location.href = 'https://www.douyin.com/'
+                }
+              } else {
+                this.slideNext()
+              }
+            })
+          }
+        },
+      },
+    })
+  }
+
+</script>
+</body>
+</html>
