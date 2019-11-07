@@ -209,7 +209,7 @@
       </div>
       
       <video muted class="video"
-        data-src="https://v.suv666.com/test/ycyh/platform/post/20191010113746_p1FZ69hj.mp4"></video>
+        data-src="https://v.suv666.com/test/ycyh/platform/post/20191010150146_QX3TjfUH.mp4"></video>
     </div>
     <div class="swiper-slide">
       <div class="video-wrapper">
@@ -240,8 +240,14 @@
       </div>
       
       
-      <video muted class="video"
-        data-src="https://v.suv666.com/test/ycyh/platform/post/20191010113645_rmFJerJi.mp4"></video>
+      <video
+        muted
+        class="video"
+        webkit-playsinline="true"
+        playsinline
+        x5-video-player-type="h5"
+        x5-video-player-fullscreen="true"
+        data-src="https://v.suv666.com/test/ycyh/platform/post/20191010151816_mKJx4vZT.mp4"></video>
     </div>
   </div>
 
@@ -252,7 +258,7 @@
     const wrapperList = document.getElementsByClassName('swiper-slide')
     let playedList = []
 
-    function observeVideo (elem, index, loadCb, endCb) {
+    function observeVideo (elem, index, endCb) {
       const video_src = elem.getAttribute('data-src')
       elem.setAttribute('src', video_src)
       playedList.push(index)
@@ -260,9 +266,12 @@
         console.log('视频正在加载')
       })
       elem.addEventListener('canplaythrough', function () {
-        console.log('视频可以播放')
         showToast('视频可以播放')
-        loadCb()
+        document.addEventListener('WeixinJSBridgeReady', () => {
+          elem.play()
+        }, false)
+        elem.play()
+
       })
       elem.addEventListener('error', function (e) {
         console.error('视频加载失败');
@@ -290,8 +299,6 @@
         init: function () {
           const videoElem = wrapperList[this.activeIndex].querySelector('video')
           observeVideo(videoElem, this.activeIndex, () => {
-            videoElem.play()
-          }, () => {
             this.slideNext()
           })
         },
@@ -303,8 +310,6 @@
             nextVideoElem && nextVideoElem.play()
           } else {
             observeVideo(nextVideoElem, this.activeIndex, () => {
-              nextVideoElem.play()
-            }, () => {
               if (this.isEnd) {
                 if (window.confirm('已经没有更多了，去抖音看看？')) {
                   window.location.href = 'https://www.douyin.com/'
