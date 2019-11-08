@@ -19,6 +19,7 @@ body, html {
     background-image: url("https://images.freeimages.com/images/small-previews/815/birds-ii-1379356.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: -1;
 }
 
 .swiper-container {
