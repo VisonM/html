@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>小视频</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://cdn.bootcss.com/Swiper/4.5.1/css/swiper.min.css" rel="stylesheet">
   <style>
     
@@ -14,7 +16,18 @@
     }
     
     body, html {
-      background: black;
+      font-family: sans-serif, "Microsoft Sans Serif";
+    }
+    
+    .filter {
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      left: 0;
+      bottom: 0;
+      filter: blur(50px);
+      background: url("https://images.freeimages.com/images/small-previews/815/birds-ii-1379356.jpg") no-repeat;
+      background-size: cover;
     }
     
     .swiper-container {
@@ -113,39 +126,85 @@
       left: 0;
       bottom: 0;
       z-index: -1;
+      
     }
     
     .toast {
-      position: fixed;
-      left: 50%;
-      top: 50%;
       min-width: 100px;
       min-height: 40px;
-      border-radius: 5px;
+      padding: 5px 10px;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+    }
+    
+    .show {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    .confirm {
+      padding: 20px;
+      background: white;
+      color: #262626;
+    }
+    
+    .confirm .title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .confirm .action {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    
+    .confirm .action span {
+      flex: 1;
+      width: 100px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .confirm .action span:first-child {
+      border-right: 1px solid #e7e7e7;
+    }
+    
+    .modal {
       transform: translate(-50%, -50%);
       z-index: 99;
-      color: white;
-      background: rgba(255, 255, 255, 0.15);
       transition: all .4s;
       opacity: 0;
       visibility: hidden;
-      padding: 5px 10px;
+      border-radius: 5px;
+      position: fixed;
+      left: 50%;
+      top: 50%;
     }
     
-    .show-toast {
-      opacity: 1;
-      visibility: visible;
+    .color-red {
+      color: red;
     }
   
   </style>
 
 </head>
 <body>
-<div class="toast" id="toast"></div>
+<div class="filter"></div>
+<div class="toast modal" id="toast"></div>
+<div class="confirm modal " id="confirm">
+  <h3 class="title">自动播放下一个视频？</h3>
+  <div class="action">
+    <span id="cancel">不了</span>
+    <span id="ok" class="color-red">好的</span>
+  </div>
 
+</div>
 <div class="swiper-container">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
@@ -173,18 +232,19 @@
           </div>
         
         </div>
-        <input class="input" placeholder="说点什么吧..." />
+        <input class="input" disabled="disabled" placeholder="说点什么吧..." />
       </div>
       
       
       <video
-        muted="muted"
         class="video"
-        webkit-playsinline="true"
-        playsinline="true"
-        x-webkit-airplay="allow"
+        muted
         x5-video-player-type="h5"
         x5-video-player-fullscreen="true"
+        x5-video-orientation="portraint"
+        x-webkit-airplay="true"
+        webkit-playsinline="true"
+        playsinline="true"
         data-src="https://v.suv666.com/test/ycyh/platform/post/20191010151953_UCs3s2Yj.mp4"></video>
     </div>
     <div class="swiper-slide">
@@ -212,17 +272,18 @@
           </div>
         
         </div>
-        <input class="input" placeholder="说点什么吧..." />
+        <input class="input" disabled="disabled" placeholder="说点什么吧..." />
       </div>
       
       <video
-        muted="muted"
         class="video"
-        webkit-playsinline="true"
-        playsinline="true"
-        x-webkit-airplay="allow"
+        muted
         x5-video-player-type="h5"
         x5-video-player-fullscreen="true"
+        x5-video-orientation="portraint"
+        x-webkit-airplay="true"
+        webkit-playsinline="true"
+        playsinline="true"
         data-src="https://v.suv666.com/test/ycyh/platform/post/20191010150146_QX3TjfUH.mp4"></video>
     </div>
     <div class="swiper-slide">
@@ -250,28 +311,100 @@
           </div>
         
         </div>
-        <input class="input" placeholder="说点什么吧..." />
+        <input class="input" disabled="disabled" placeholder="说点什么吧..." />
       </div>
       
       
       <video
-        muted="muted"
         class="video"
-        webkit-playsinline="true"
-        playsinline="true"
-        x-webkit-airplay="allow"
+        muted
         x5-video-player-type="h5"
         x5-video-player-fullscreen="true"
+        x5-video-orientation="portraint"
+        x-webkit-airplay="true"
+        webkit-playsinline="true"
+        playsinline="true"
         data-src="https://v.suv666.com/test/ycyh/platform/post/20191010151816_mKJx4vZT.mp4"></video>
     </div>
   </div>
 
 </div>
+
 <script src="https://cdn.bootcss.com/Swiper/4.5.1/js/swiper.min.js"></script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://ssl.hi.163.com/share/wxjs.php" frameborder="0" id="iframe"></script>
+<script src="./js/share.js"></script>
+<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
 <script>
   window.onload = function () {
+//global const
     const wrapperList = document.getElementsByClassName('swiper-slide')
     let playedList = []
+    let isAutoPlay = false
+
+//init
+    initConfirmEvent()
+    document.addEventListener('WeixinJSBridgeReady', () => {
+      console.log('WeixinJSBridgeReady')
+    }, false)
+
+//tools
+    function closeModal () {
+      const confirmElem = document.getElementById('confirm')
+      confirmElem.classList.remove('show')
+    }
+
+    function showModal () {
+      const confirmElem = document.getElementById('confirm')
+      confirmElem.classList.add('show')
+    }
+
+    function showToast (text) {
+      const toastElem = document.getElementById('toast')
+      toastElem.classList.add('show')
+      toastElem.innerText = text
+      setTimeout(() => {
+        toastElem.classList.remove('show')
+      }, 1000)
+    }
+
+//event
+    function initConfirmEvent () {
+      const confirmElem = document.getElementById('confirm')
+      const actionElem = confirmElem.querySelector('.action')
+      actionElem.addEventListener('click', (event) => {
+        event = event || window.event;
+        const target = event.target || event.srcElement;
+        switch (target.id) {
+          case 'cancel':
+            handleModalCallback()
+            break
+          case 'ok':
+            handleModalCallback(true)
+            break
+          default:
+            break
+        }
+      })
+    }
+
+    function handleModalCallback (flag) {
+      if (flag) {
+        this.isAutoPlay = true
+      }
+      mySwiper.setTransition(1000);
+      mySwiper.setTranslate(-200);
+      showToast('下拉看更多喔')
+      setTimeout(() => {
+        mySwiper.setTransition(1000);
+        mySwiper.setTranslate(0);
+      }, 1000)
+      const videoElem = wrapperList[mySwiper.activeIndex].querySelector('video')
+      observeVideo(videoElem, mySwiper.activeIndex, () => {
+        mySwiper.slideNext()
+      })
+      closeModal()
+    }
 
     function observeVideo (elem, index, endCb) {
       const video_src = elem.getAttribute('data-src')
@@ -281,12 +414,8 @@
         console.log('视频正在加载')
       })
       elem.addEventListener('canplaythrough', function () {
-        showToast('视频可以播放')
-        document.addEventListener('WeixinJSBridgeReady', () => {
-          elem.play()
-        }, false)
         elem.play()
-
+        elem.muted = false
       })
       elem.addEventListener('error', function (e) {
         console.error('视频加载失败');
@@ -298,24 +427,14 @@
       })
     }
 
-    function showToast (text) {
-      const toastElem = document.getElementById('toast')
-      toastElem.classList.add('show-toast')
-      toastElem.innerText = text
-      setTimeout(() => {
-        toastElem.classList.remove('show-toast')
-      }, 1000)
-    }
-
-    var mySwiper = new Swiper('.swiper-container', {
+// lib init
+    const vConsole = new VConsole();
+    const mySwiper = new Swiper('.swiper-container', {
       direction: 'vertical', // 垂直切换选项
       loop: false, // 循环模式选项
       on: {
         init: function () {
-          const videoElem = wrapperList[this.activeIndex].querySelector('video')
-          observeVideo(videoElem, this.activeIndex, () => {
-            this.slideNext()
-          })
+          showModal()
         },
         slideChange: function () {
           const lastVideoElem = wrapperList[this.previousIndex].querySelector('video')
@@ -340,5 +459,6 @@
   }
 
 </script>
+
 </body>
 </html>
