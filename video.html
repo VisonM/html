@@ -19,13 +19,20 @@
       font-family: sans-serif, "Microsoft Sans Serif";
     }
     
-    .filter {
+    .filter-box {
       position: fixed;
-      width: 200%;
-      height: 200%;
       left: 0;
       bottom: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .filter {
+      width: 100%;
+      height: 100%;
       filter: blur(10px);
+      transform: scale(2.02);
       background-image: url("https://images.freeimages.com/images/small-previews/815/birds-ii-1379356.jpg");
       background-repeat: no-repeat;
       background-size: cover;
@@ -196,7 +203,10 @@
 
 </head>
 <body>
-<div class="filter"></div>
+<div class="filter-box">
+  <div class="filter"></div>
+</div>
+
 <div class="toast modal" id="toast"></div>
 <div class="confirm modal " id="confirm">
   <h3 class="title">自动播放下一个视频？</h3>
