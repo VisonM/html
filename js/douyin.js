@@ -78,6 +78,7 @@ window.onload = function () {
   function observeVideo (elem, index, endCb) {
     const video_src = elem.getAttribute('data-src')
     elem.setAttribute('src', video_src)
+    elem.load();
     playedList.push(index)
     elem.addEventListener('waiting', function () {
       console.log('视频正在加载')
