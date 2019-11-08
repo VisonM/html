@@ -9,10 +9,10 @@ window.onload = function () {
   document.addEventListener('WeixinJSBridgeReady', () => {
     console.log('WeixinJSBridgeReady')
   }, false)
-  if (parseUA().android) {
-    const elem = document.querySelector('.filter');
-    elem.style.display = 'none'
-  }
+  // if (parseUA().android) {
+  //   const elem = document.querySelector('.filter');
+  //   elem.style.display = 'none'
+  // }
 
 //tools
   function parseUA () {
@@ -94,9 +94,9 @@ window.onload = function () {
   }
 
   function renderCover (elem) {
-    if (parseUA().android) {
-      return
-    }
+    // if (parseUA().android) {
+    //   return
+    // }
     const cover = elem.getAttribute('cover-src') || 'https://images.freeimages.com/images/small-previews/815/birds-ii-1379356.jpg'
     const filterElem = document.querySelector('.filter')
     filterElem.style.backgroundImage = `url(${cover})`
