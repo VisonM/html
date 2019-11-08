@@ -1,0 +1,183 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: sans-serif, "Microsoft Sans Serif";
+}
+
+.filter {
+    position: fixed;
+    filter: blur(10px);
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+    left: -50px;
+    background-image: url("https://images.freeimages.com/images/small-previews/815/birds-ii-1379356.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.swiper-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.swiper-slide {
+    position: relative;
+    z-index: 1;
+}
+
+.video-wrapper {
+    padding: 0 20px;
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.info {
+    flex: 1;
+    color: white;
+}
+
+.info .tag {
+    border-radius: 20px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+}
+
+.info .title {
+    margin-top: 20px;
+}
+
+.info .desc {
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.action {
+    display: flex;
+    flex-direction: column;
+}
+
+.action .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.action .item img {
+    width: 35px;
+    height: 35px;
+}
+
+.action .item span {
+    color: white;
+    margin-top: 5px;
+}
+
+.input {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    width: 90%;
+    margin: 30px 0;
+    color: white;
+}
+
+input:focus {
+    outline: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+.video {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+
+}
+
+.toast {
+    min-width: 100px;
+    min-height: 40px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.confirm {
+    padding: 20px;
+    background: white;
+    color: #262626;
+}
+
+.confirm .title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.confirm .action {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.confirm .action span {
+    flex: 1;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm .action span:first-child {
+    border-right: 1px solid #e7e7e7;
+}
+
+.modal {
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    transition: all .4s;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 5px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+}
+
+.color-red {
+    color: red;
+}
+
