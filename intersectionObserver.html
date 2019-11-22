@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IntersectionObserver</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body {
+      min-height: 200vh;
+      padding: 50px;
+    }
+    
+    .wrapper {
+      max-height: 300px;
+      border: 1px solid green;
+      overflow-y: scroll;
+    }
+    
+    .lazy {
+      width: 200px;
+      height: 200px;
+      background: red;
+    }
+    
+    .other {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .tips {
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: #262626;
+      width: 100%;
+      color: white;
+      height: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="lazy">美女</div>
+  <div class="other">啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+</div>
+<div class="tips"></div>
+
+<script>
+  window.onload = function () {
+    const tipsElem = document.querySelector('.tips')
+    const options = {
+      root: document.querySelector('.wrapper'),
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+      rootMargin: '150px 0px',
+    }
+    const interObserver = new IntersectionObserver((entrys) => {
+      entrys.forEach(entry => {
+        console.log(entry)
+        entry.isIntersecting || entry.intersectionRatio > 0 ? handleTipsChange('元素可见') : handleTipsChange('元素不可见')
+      })
+    }, options)
+    console.log(document.querySelector('.lazy'))
+    interObserver.observe(document.querySelector('.lazy'))
+
+    function handleTipsChange (text) {
+      tipsElem.innerHTML = text
+    }
+  }
+</script>
+</body>
+</html>
