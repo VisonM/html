@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=400px, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>IntersectionObserver</title>
   <style>
     * {
@@ -11,13 +12,13 @@
     
     body {
       min-height: 200vh;
-      padding: 50px;
     }
     
     .wrapper {
       max-height: 300px;
       border: 1px solid green;
       overflow-y: scroll;
+      margin: 50px;
     }
     
     .lazy {
@@ -41,13 +42,23 @@
       height: 40px;
       text-align: center;
     }
+    
+    .test {
+      display: inline-block;
+      height: 50px;
+      background: deeppink;
+      width: 100vw;
+    }
   </style>
 </head>
 <body>
+
 <div class="wrapper">
   <div class="lazy">美女</div>
+  <img src="https://img.ejiayou.com/uploadPic/Image/2019/01/1548743174233.jpg" />
   <div class="other">啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
 </div>
+<div class="test">asdasdasd</div>
 <div class="tips"></div>
 
 <script>

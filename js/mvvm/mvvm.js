@@ -4,11 +4,14 @@ class Mvvm {
     this.$el = options.el
     this.$data = options.data
     Observe(options.data)//数据劫持
-    ProxyData.call(this, options.data)//数据代理
+    ProxyData.call(this)//数据代理
+    initComputed.call(this)
+    compiler(options.el, this)
   }
 }
 
-function ProxyData (data) {
+function ProxyData () {
+  const { data } = this.$options
   for (let key in data) {
     Object.defineProperty(this, key, {
       configurable: true,
@@ -26,12 +29,20 @@ function ProxyData (data) {
 }
 
 function Observe (data) {
+  let dep = new Dep();
   for (let key in data) {
     let value = data[key]
     deepObserve(value)
     Object.defineProperty(data, key, {
       configurable: true,
       get () {
+        Dep.target && dep.add(Dep.target);
+        // if (Dep.target) {
+        //   let flag = dep.events.some(event => event.exp === Dep.target.exp)
+        //   if (!flag) {
+        //     dep.add(Dep.target);
+        //   }
+        // }
         return value
       },
       set (newVal) {
@@ -40,6 +51,7 @@ function Observe (data) {
         }
         value = newVal
         deepObserve(value)
+        dep.emit()
       },
     })
   }
@@ -48,5 +60,15 @@ function Observe (data) {
 function deepObserve (obj) {
   if (!obj || typeof obj !== 'object') return;
   return new Observe(obj)
+}
+
+function initComputed () {
+  const { computed } = this.$options
+  Object.keys(computed).forEach(key => {
+    Object.defineProperty(this, key, {
+      get: typeof computed[key] === 'function' ? computed[key] : computed[key].get,
+      set (v) {},
+    })
+  })
 }
 

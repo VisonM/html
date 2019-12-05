@@ -6,13 +6,19 @@
 </head>
 <body>
 <div id="app">
-  <h1>{{song}}</h1>
+  <h1>{{title}}</h1>
+  <h4>{{song}}</h4>
   <p>《{{album.name}}》是{{singer}}2005年11月发行的专辑</p>
   <p>主打歌为{{album.theme}}</p>
   <p>作词人为{{singer}}等人。</p>
   为你弹奏肖邦的{{album.theme}}
+  <br />
+  <input v-model="input" placeholder="v-model" />
+  <p>{{input}}</p>
 </div>
 <!--实现的mvvm-->
+<script src="js/mvvm/watch.js"></script>
+<script src="./js/mvvm/complie.js"></script>
 <script src="./js/mvvm/mvvm.js"></script>
 <script>
   // 写法和Vue一样
@@ -25,9 +31,14 @@
         theme: '夜曲',
       },
       singer: '周杰伦',
+      input: 'hello world',
+    },
+    computed: {
+      title: function () {
+        return this.song + '--' + this.singer
+      },
     },
   });
-  console.log(vm)
 </script>
 
 </body>
